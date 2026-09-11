@@ -1,228 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Roblox - Roblox Indonesia</title>
-
-<meta name="description"
-      content="Profil Roblox di Roblox Indonesia.">
-
-<meta name="robots"
-      content="index, follow">
-
-
-<!-- =========================
-     CANONICAL
-========================= -->
-
-<link rel="canonical"
-      href="https://robloxindonesia.github.io/users/">
-
-
-<!-- =========================
-     OPEN GRAPH
-========================= -->
-
-<meta property="og:type"
-      content="profile">
-
-<meta property="og:title"
-      content="Roblox - Roblox Indonesia">
-
-<meta property="og:description"
-      content="Profil Roblox di Roblox Indonesia.">
-
-<meta property="og:url"
-      content="https://rblxid.github.io/users/?user=roblox">
-
-<meta property="og:site_name"
-      content="Roblox Indonesia">
-
-<!-- GANTI DENGAN FOTO AVATAR ROBLOX -->
-<meta property="og:image"
-      content="https://robloxindonesia.github.io/avatar/roblox.png">
-
-<meta property="og:image:alt"
-      content="Avatar Roblox">
-
-<meta property="og:image:type"
-      content="image/png">
-
-<meta property="og:image:width"
-      content="1200">
-
-<meta property="og:image:height"
-      content="630">
-
-<meta property="og:locale"
-      content="id_ID">
-
-
-<!-- =========================
-     TWITTER / X
-========================= -->
-
-<meta name="twitter:card"
-      content="summary_large_image">
-
-<meta name="twitter:title"
-      content="Roblox - Roblox Indonesia">
-
-<meta name="twitter:description"
-      content="Profil Roblox di Roblox Indonesia.">
-
-<meta name="twitter:image"
-      content="https://robloxindonesia.github.io/avatar/roblox.png">
-
-
-<!-- =========================
-     HALAMAN
-========================= -->
-
-<style>
-
-body {
-    margin: 0;
-    background: #202124;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-.profile {
-    padding: 30px;
-    text-align: center;
-}
-
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-</style>
-
+<title>Roblox Indonesia</title>
 </head>
 
 <body>
 
-<div class="profile">
-
-    <img
-        id="avatar"
-        class="avatar"
-        src=""
-        alt="Avatar Roblox">
-
-    <h1 id="displayName">
-        Memuat...
-    </h1>
-
-    <p id="username"></p>
-
-    <p id="description"></p>
-
-</div>
-
-
 <script>
+const params = new URLSearchParams(window.location.search);
+const username = params.get("usn");
 
-const params =
-    new URLSearchParams(window.location.search);
-
-const username =
-    params.get("user");
-
-
-if (!username) {
-
-    document.getElementById("displayName")
-        .textContent =
-        "Profil tidak ditemukan";
-
+if (username) {
+    window.location.replace(
+        "https://robloxindonesia.github.io/users/profil.html?user=" +
+        encodeURIComponent(username)
+    );
 } else {
-
-    const jsonURL =
-        "https://robloxindonesia.github.io/script/users/" +
-        encodeURIComponent(username) +
-        ".json";
-
-
-    fetch(jsonURL)
-
-        .then(response => {
-
-            if (!response.ok) {
-                throw new Error("Profil tidak ditemukan");
-            }
-
-            return response.json();
-
-        })
-
-        .then(data => {
-
-            const name =
-                data.name || username;
-
-            const displayName =
-                data.displayName || name;
-
-            const description =
-                data.description ||
-                "Profil Roblox di Roblox Indonesia.";
-
-            const avatar =
-                data.avatarHeadshotUrl ||
-                data.imageUrl ||
-                "";
-
-
-            document.title =
-                displayName +
-                " - Roblox Indonesia";
-
-
-            document.getElementById(
-                "displayName"
-            ).textContent =
-                displayName;
-
-
-            document.getElementById(
-                "username"
-            ).textContent =
-                "@" + name;
-
-
-            document.getElementById(
-                "description"
-            ).textContent =
-                description;
-
-
-            document.getElementById(
-                "avatar"
-            ).src =
-                avatar;
-
-        })
-
-        .catch(() => {
-
-            document.getElementById(
-                "displayName"
-            ).textContent =
-                "Profil tidak ditemukan";
-
-        });
-
+    window.location.replace(
+        "https://robloxindonesia.github.io/"
+    );
 }
-
 </script>
 
 </body>
