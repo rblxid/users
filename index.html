@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profil Roblox - Roblox Indonesia</title>
+
+<meta name="description"
+      content="Lihat profil Roblox di Roblox Indonesia.">
+
+<meta name="robots"
+      content="index, follow">
+
+<link rel="canonical"
+      href="https://robloxindonesia.github.io/users/">
+
+<!-- Open Graph -->
+<meta property="og:type"
+      content="profile">
+
+<meta property="og:title"
+      content="Profil Roblox - Roblox Indonesia">
+
+<meta property="og:description"
+      content="Lihat profil Roblox di Roblox Indonesia.">
+
+<meta property="og:url"
+      content="https://rblxid.github.io/users/?user=roblox">
+
+<meta property="og:site_name"
+      content="Roblox Indonesia">
+
+<meta property="og:image"
+      content="https://robloxindonesia.github.io/favicon.png">
+
+<meta property="og:image:alt"
+      content="Profil Roblox">
+
+<meta property="og:locale"
+      content="id_ID">
+
+<!-- Twitter / X -->
+<meta name="twitter:card"
+      content="summary">
+
+<meta name="twitter:title"
+      content="Profil Roblox - Roblox Indonesia">
+
+<meta name="twitter:description"
+      content="Lihat profil Roblox di Roblox Indonesia.">
+
+<meta name="twitter:image"
+      content="https://robloxindonesia.github.io/favicon.png">
+
+</head>
+
+<body>
+
+<h1 id="displayName">Memuat profil...</h1>
+
+<p id="username"></p>
+
+<p id="description"></p>
+
+<img id="avatar"
+     src=""
+     alt="Avatar Roblox">
+
+<script>
+
+const params = new URLSearchParams(
+    window.location.search
+);
+
+const username = params.get("user");
+
+if (!username) {
+
+    document.getElementById("displayName").textContent =
+        "Profil tidak ditemukan";
+
+} else {
+
+    const jsonURL =
+        "https://robloxindonesia.github.io/script/users/" +
+        encodeURIComponent(username) +
+        ".json";
+
+    fetch(jsonURL)
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Profil tidak ditemukan");
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            document.title =
+                `${data.displayName || data.name} - Roblox Indonesia`;
+
+            document.getElementById("displayName")
+                .textContent =
+                data.displayName || data.name;
+
+            document.getElementById("username")
+                .textContent =
+                "@" + data.name;
+
+            document.getElementById("description")
+                .textContent =
+                data.description || "";
+
+            document.getElementById("avatar")
+                .src =
+                data.avatarHeadshotUrl || data.imageUrl || "";
+
+        })
+
+        .catch(error => {
+
+            document.getElementById("displayName")
+                .textContent =
+                "Profil tidak ditemukan";
+
+        });
+
+}
+
+</script>
+
+</body>
+</html>
